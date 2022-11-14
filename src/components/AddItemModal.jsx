@@ -45,7 +45,12 @@ export function AddItemModal() {
           <ModalBody>
             <FormControl>
               <Stack spacing="20px">
-                <Input type="text" placeholder="Item Name" variant="filled" />
+                <Input
+                  focusBorderColor="purple.500"
+                  type="text"
+                  placeholder="Item Name"
+                  variant="filled"
+                />
                 <FormLabel>Cost</FormLabel>
                 <NumberInput
                   step={5}
@@ -53,6 +58,7 @@ export function AddItemModal() {
                   min={0}
                   precision={2}
                   variant="filled"
+                  focusBorderColor="purple.500"
                 >
                   <NumberInputField />
                   <NumberInputStepper>
@@ -60,7 +66,11 @@ export function AddItemModal() {
                     <NumberDecrementStepper />
                   </NumberInputStepper>
                 </NumberInput>
-                <Textarea placeholder="Additional Notes..." variant="filled" />
+                <Textarea
+                  focusBorderColor="purple.500"
+                  placeholder="Additional Notes..."
+                  variant="filled"
+                />
                 <FormLabel>Split in between</FormLabel>
                 <CheckboxGroup
                   colorScheme="purple"
