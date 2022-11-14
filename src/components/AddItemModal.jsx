@@ -8,6 +8,20 @@ import {
   ModalCloseButton,
   useDisclosure,
   Button,
+  Input,
+  Stack,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
+  NumberIncrementStepper,
+  NumberDecrementStepper,
+  Textarea,
+  FormControl,
+  FormLabel,
+  FormErrorMessage,
+  FormHelperText,
+  CheckboxGroup,
+  Checkbox,
 } from "@chakra-ui/react";
 
 import { PrimaryButton } from "./PrimaryButton";
@@ -26,20 +40,47 @@ export function AddItemModal() {
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
+          <ModalHeader textAlign="center">Add Item</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vitae
-            doloribus officia quibusdam illum alias dolore non consequatur
-            recusandae sequi, illo voluptatum, ea similique accusamus
-            doloremque, odit voluptatibus aliquid ad. Omnis.
+            <FormControl>
+              <Stack spacing="20px">
+                <Input type="text" placeholder="Item Name" variant="filled" />
+                <FormLabel>Cost</FormLabel>
+                <NumberInput
+                  step={5}
+                  defaultValue={0}
+                  min={0}
+                  precision={2}
+                  variant="filled"
+                >
+                  <NumberInputField />
+                  <NumberInputStepper>
+                    <NumberIncrementStepper />
+                    <NumberDecrementStepper />
+                  </NumberInputStepper>
+                </NumberInput>
+                <Textarea placeholder="Additional Notes..." variant="filled" />
+                <FormLabel>Split in between</FormLabel>
+                <CheckboxGroup
+                  colorScheme="purple"
+                  defaultValue={["Lucas", "Gabriel"]}
+                >
+                  <Stack spacing={[1, 5]} direction={["column", "row"]}>
+                    <Checkbox value="Lucas">Lucas</Checkbox>
+                    <Checkbox value="Gabriel">Gabriel</Checkbox>
+                    <Checkbox value="Francesco">Francesco</Checkbox>
+                  </Stack>
+                </CheckboxGroup>
+              </Stack>
+            </FormControl>
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
-              Close
+            <Button bgColor="#6b63ff" mr={3} onClick={onClose}>
+              Add
             </Button>
-            <Button variant="ghost">Secondary Action</Button>
+            <Button variant="ghost">Cancel</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>

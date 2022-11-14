@@ -19,6 +19,11 @@ const theme = extendTheme({
       body: "Roboto, sans-serif",
     },
   },
+  colors: {
+    purple: {
+      500: "#6C63FF",
+    },
+  },
 });
 
 export default theme;
