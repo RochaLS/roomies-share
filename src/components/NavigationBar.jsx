@@ -22,9 +22,6 @@ export function NavigationBar() {
         <Link as={ReachLink} to="group" _hover={{ color: "#5149fb" }}>
           My Group
         </Link>
-        <Link as={ReachLink} to="me" _hover={{ color: "#5149fb" }}>
-          Me
-        </Link>
         <Link as={ReachLink} to="settings" _hover={{ color: "#5149fb" }}>
           Settings
         </Link>
