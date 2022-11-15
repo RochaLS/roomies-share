@@ -1,5 +1,4 @@
 import { Button } from "@chakra-ui/react";
-import { ReactElement } from "react";
 
 export function PrimaryButton({ text, icon, onClick }) {
   return icon ? (

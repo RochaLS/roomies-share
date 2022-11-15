@@ -18,8 +18,6 @@ import {
   Textarea,
   FormControl,
   FormLabel,
-  FormErrorMessage,
-  FormHelperText,
   CheckboxGroup,
   Checkbox,
 } from "@chakra-ui/react";

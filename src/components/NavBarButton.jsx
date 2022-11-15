@@ -1,7 +1,7 @@
 import { Button } from "@chakra-ui/react";
 import { FiX } from "react-icons/fi";
 
-export function NavBarButton({ session }) {
+export function NavBarButton() {
   return (
     <Button
       size="md"

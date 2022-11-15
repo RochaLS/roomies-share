@@ -1,7 +1,7 @@
-import { Flex, Text, Button } from "@chakra-ui/react";
-import { FiX } from "react-icons/fi";
-import { AddItemModal } from "./AddItemModal";
+import { Flex, Link, Text, HStack } from "@chakra-ui/react";
 import { NavBarButton } from "./NavBarButton";
+
+import { Link as ReachLink } from "react-router-dom";
 
 export function NavigationBar() {
   return (
@@ -13,7 +13,12 @@ export function NavigationBar() {
       p="18px"
     >
       <Text>Dashboard</Text>
-      <NavBarButton />
+      <HStack spacing="20px">
+        <Link as={ReachLink} to="settings" _hover={{ color: "#5149fb" }}>
+          Settings
+        </Link>
+        <NavBarButton />
+      </HStack>
     </Flex>
   );
 }
