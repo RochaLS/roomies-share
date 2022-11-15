@@ -19,10 +19,10 @@ export function NavigationBar() {
         </Heading>
       </Link>
       <HStack spacing="20px">
-        <Link as={ReachLink} to="group" _hover={{ color: "#5149fb" }}>
+        <Link as={ReachLink} to="/group" _hover={{ color: "#5149fb" }}>
           My Group
         </Link>
-        <Link as={ReachLink} to="settings" _hover={{ color: "#5149fb" }}>
+        <Link as={ReachLink} to="/settings" _hover={{ color: "#5149fb" }}>
           Settings
         </Link>
         <NavBarButton />
