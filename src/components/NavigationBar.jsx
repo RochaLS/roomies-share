@@ -12,9 +12,12 @@ export function NavigationBar() {
       justify="space-between"
       p="18px"
     >
-      <Heading size="md">
-        Dashboard <span style={{ color: "#6C63FF", fontSize: "42px" }}>.</span>
-      </Heading>
+      <Link as={ReachLink} to="/" _hover={{ color: "#5149fb" }}>
+        <Heading size="md">
+          Dashboard{" "}
+          <span style={{ color: "#6C63FF", fontSize: "42px" }}>.</span>
+        </Heading>
+      </Link>
       <HStack spacing="20px">
         <Link as={ReachLink} to="group" _hover={{ color: "#5149fb" }}>
           My Group
