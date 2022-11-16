@@ -26,9 +26,12 @@ import {
 
 import { PrimaryButton } from "./PrimaryButton";
 import { FiPlusCircle } from "react-icons/fi";
+import { useEffect, useState } from "react";
 
 export function AddItemModal() {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [splitEqually, setSplitEqually] = useState(true);
+
   return (
     <>
       <PrimaryButton
@@ -88,10 +91,44 @@ export function AddItemModal() {
                   </FormLabel>
                   <Switch
                     colorScheme="purple"
-                    defaultChecked={true}
                     id="split-equally"
+                    onChange={() => {
+                      setSplitEqually(!splitEqually);
+                    }}
                   />
                 </HStack>
+                {splitEqually && (
+                  <>
+                    <NumberInput
+                      step={5}
+                      defaultValue={0}
+                      min={0}
+                      precision={2}
+                      variant="filled"
+                      focusBorderColor="purple.500"
+                    >
+                      <NumberInputField />
+                      <NumberInputStepper>
+                        <NumberIncrementStepper />
+                        <NumberDecrementStepper />
+                      </NumberInputStepper>
+                    </NumberInput>
+                    <NumberInput
+                      step={5}
+                      defaultValue={0}
+                      min={0}
+                      precision={2}
+                      variant="filled"
+                      focusBorderColor="purple.500"
+                    >
+                      <NumberInputField />
+                      <NumberInputStepper>
+                        <NumberIncrementStepper />
+                        <NumberDecrementStepper />
+                      </NumberInputStepper>
+                    </NumberInput>
+                  </>
+                )}
               </Stack>
             </FormControl>
           </ModalBody>
