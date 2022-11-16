@@ -85,7 +85,12 @@ export function AddItemModal() {
           </ModalBody>
 
           <ModalFooter>
-            <Button bgColor="#6b63ff" mr={3} onClick={onClose}>
+            <Button
+              colorScheme="purple"
+              mr={3}
+              onClick={onClose}
+              _hover={{ bgColor: "#5149fb" }}
+            >
               Add
             </Button>
             <Button variant="ghost">Cancel</Button>

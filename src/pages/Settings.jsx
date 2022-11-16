@@ -13,7 +13,11 @@ import { EditUserInfoModal } from "../components/EditUserInfoModal";
 
 import { NavigationBar } from "../components/NavigationBar";
 
+import { useNavigate } from "react-router-dom";
+
 export function Settings() {
+  const navigate = useNavigate();
+
   return (
     <>
       <NavigationBar />
@@ -46,7 +50,13 @@ export function Settings() {
               </Text>
             </Box>
             <Box>
-              <Button colorScheme="purple" _hover={{ bg: "#5149fb" }}>
+              <Button
+                colorScheme="purple"
+                _hover={{ bg: "#5149fb" }}
+                onClick={() => {
+                  navigate("/login");
+                }}
+              >
                 Logout
               </Button>
             </Box>
