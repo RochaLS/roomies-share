@@ -20,6 +20,8 @@ import {
   FormLabel,
   CheckboxGroup,
   Checkbox,
+  Switch,
+  HStack,
 } from "@chakra-ui/react";
 
 import { PrimaryButton } from "./PrimaryButton";
@@ -49,7 +51,7 @@ export function AddItemModal() {
                   placeholder="Item Name"
                   variant="filled"
                 />
-                <FormLabel>Cost</FormLabel>
+                <FormLabel>Total Cost</FormLabel>
                 <NumberInput
                   step={5}
                   defaultValue={0}
@@ -80,6 +82,16 @@ export function AddItemModal() {
                     <Checkbox value="Francesco">Francesco</Checkbox>
                   </Stack>
                 </CheckboxGroup>
+                <HStack>
+                  <FormLabel htmlFor="split-equaly" mb="0">
+                    Split Equally?
+                  </FormLabel>
+                  <Switch
+                    colorScheme="purple"
+                    defaultChecked={true}
+                    id="split-equally"
+                  />
+                </HStack>
               </Stack>
             </FormControl>
           </ModalBody>
