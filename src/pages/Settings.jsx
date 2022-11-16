@@ -9,6 +9,7 @@ import {
   Text,
   Button,
 } from "@chakra-ui/react";
+import { EditUserInfoModal } from "../components/EditUserInfoModal";
 
 import { NavigationBar } from "../components/NavigationBar";
 
@@ -27,13 +28,7 @@ export function Settings() {
         <CardBody>
           <Stack divider={<StackDivider />} spacing="4">
             <Box>
-              <Button
-                variant="link"
-                colorScheme="purple"
-                _hover={{ color: "#5149fb" }}
-              >
-                Edit User Information
-              </Button>
+              <EditUserInfoModal />
               <Text pt="2" fontSize="sm">
                 Edit user information such as name, e-mail and profile picture
               </Text>
