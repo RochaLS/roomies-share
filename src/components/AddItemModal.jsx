@@ -44,6 +44,7 @@ export function AddItemModal({ groupUsers }) {
     const updatedCheckedState = checkedState.map((item, index) =>
       index === position ? !item : item
     );
+    setCheckedState(updatedCheckedState);
   };
 
   return (
