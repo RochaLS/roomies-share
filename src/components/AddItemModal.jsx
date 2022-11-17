@@ -28,9 +28,23 @@ import { PrimaryButton } from "./PrimaryButton";
 import { FiPlusCircle } from "react-icons/fi";
 import { useEffect, useState } from "react";
 
-export function AddItemModal() {
+export function AddItemModal({ groupUsers }) {
+  console.log(groupUsers);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [splitEqually, setSplitEqually] = useState(true);
+
+  //Form Controls
+  const [itemName, setItemName] = useState("");
+  const [itemTotalCost, setItemTotalCost] = useState(0);
+  const [additionalNotes, setAdditionalNotes] = useState("");
+
+  const [checkedState, setCheckedState] = useState(new Array(3).fill(false));
+
+  const handleOnChange = (position) => {
+    const updatedCheckedState = checkedState.map((item, index) =>
+      index === position ? !item : item
+    );
+  };
 
   return (
     <>
@@ -53,6 +67,8 @@ export function AddItemModal() {
                   type="text"
                   placeholder="Item Name"
                   variant="filled"
+                  value={itemName}
+                  onChange={(e) => setItemName(e.target.value)}
                 />
                 <FormLabel>Total Cost</FormLabel>
                 <NumberInput
@@ -62,6 +78,8 @@ export function AddItemModal() {
                   precision={2}
                   variant="filled"
                   focusBorderColor="purple.500"
+                  value={itemTotalCost}
+                  onChange={(e) => setItemTotalCost(Number(e.target.value))}
                 >
                   <NumberInputField />
                   <NumberInputStepper>
@@ -73,19 +91,25 @@ export function AddItemModal() {
                   focusBorderColor="purple.500"
                   placeholder="Additional Notes..."
                   variant="filled"
+                  value={additionalNotes}
+                  onChange={(e) => setAdditionalNotes(e.target.value)}
                 />
                 <FormLabel>Split in between</FormLabel>
-                <CheckboxGroup
-                  colorScheme="purple"
-                  defaultValue={["Lucas", "Gabriel"]}
-                >
+                <CheckboxGroup colorScheme="purple">
                   <Stack spacing={[1, 5]} direction={["column", "row"]}>
-                    <Checkbox value="Lucas">Lucas</Checkbox>
-                    <Checkbox value="Gabriel">Gabriel</Checkbox>
-                    <Checkbox value="Francesco">Francesco</Checkbox>
+                    {groupUsers.map((user, index) => (
+                      <Checkbox
+                        key={index}
+                        value={user.firstName}
+                        checked={checkedState[index]}
+                        onChange={() => handleOnChange(index)}
+                      >
+                        {user.firstName}
+                      </Checkbox>
+                    ))}
                   </Stack>
                 </CheckboxGroup>
-                <HStack>
+                {/* <HStack>
                   <FormLabel htmlFor="split-equaly" mb="0">
                     Split Equally?
                   </FormLabel>
@@ -96,8 +120,8 @@ export function AddItemModal() {
                       setSplitEqually(!splitEqually);
                     }}
                   />
-                </HStack>
-                {splitEqually && (
+                </HStack> */}
+                {/* {splitEqually && (
                   <>
                     <NumberInput
                       step={5}
@@ -128,7 +152,7 @@ export function AddItemModal() {
                       </NumberInputStepper>
                     </NumberInput>
                   </>
-                )}
+                )} */}
               </Stack>
             </FormControl>
           </ModalBody>

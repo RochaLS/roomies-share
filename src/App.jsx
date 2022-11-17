@@ -17,6 +17,33 @@ import { NavigationBar } from "./components/NavigationBar";
 import { AddItemModal } from "./components/AddItemModal";
 
 const Home = () => {
+  const user1 = {
+    id: 1,
+    firstName: "Lucas",
+    lastName: "Rocha",
+    img: "https://github.com/RochaLS.png",
+  };
+
+  const user2 = {
+    id: 2,
+    firstName: "John",
+    lastName: "Doe",
+  };
+
+  const user3 = {
+    id: 3,
+    firstName: "Gabriel",
+    lastName: "Figliolino",
+  };
+
+  const user4 = {
+    id: 4,
+    firstName: "Francesco",
+    lastName: "Trotta",
+  };
+
+  const users = [user1, user2, user3, user4];
+
   return (
     <>
       <NavigationBar />
@@ -105,7 +132,7 @@ const Home = () => {
           </Table>
         </TableContainer>
         <Flex mt="20px" mr="10px" justify="flex-end">
-          <AddItemModal />
+          <AddItemModal groupUsers={users} />
         </Flex>
       </Box>
     </>
