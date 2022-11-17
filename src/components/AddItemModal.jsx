@@ -29,7 +29,6 @@ import { FiPlusCircle } from "react-icons/fi";
 import { useEffect, useState } from "react";
 
 export function AddItemModal({ groupUsers, handleUpdate }) {
-  console.log(groupUsers);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [splitEqually, setSplitEqually] = useState(true);
 

@@ -11,23 +11,38 @@ import {
   AvatarGroup,
   Heading,
   Flex,
+  IconButton,
+  HStack,
 } from "@chakra-ui/react";
 
 import { NavigationBar } from "./components/NavigationBar";
 import { AddItemModal } from "./components/AddItemModal";
 
+import { FiTrash2, FiEdit3 } from "react-icons/fi";
+
 import React, { useState } from "react";
 
 const Home = () => {
-  const item = {
+  const item1 = {
     id: 1,
     name: "Fresh Prep",
     totalCost: 94.0,
-    boughtBy: "Lucas Rocha",
+    boughtBy: { name: "Lucas Rocha", id: 1 },
     splittedBetween: ["Lucas Rocha", "Gabriel Figliolino"],
     finalCost: 47.0,
   };
-  const [items, setItems] = useState([item]);
+
+  const item2 = {
+    id: 2,
+    name: "Kana's present",
+    totalCost: 36.0,
+    boughtBy: { name: "Gabriel Figliolino", id: 2 },
+    splittedBetween: ["Gabriel Figliolino", "Lucas Rocha"],
+    finalCost: 18.0,
+  };
+  const [items, setItems] = useState([item1, item2]);
+
+  const currentUserId = 1;
 
   function handleUpdate(newItem) {
     setItems([...items, newItem]);
@@ -87,7 +102,7 @@ const Home = () => {
               {items.map((item, index) => {
                 return (
                   <Tr key={index}>
-                    <Td>{item.boughtBy}</Td>
+                    <Td>{item.boughtBy.name}</Td>
                     <Td>{item.name}</Td>
                     <Td>${Number(item.totalCost).toFixed(2)}</Td>
                     <Td>
@@ -98,6 +113,28 @@ const Home = () => {
                       </AvatarGroup>
                     </Td>
                     <Td>${Number(item.finalCost).toFixed(2)}</Td>
+                    <Td>
+                      {currentUserId === item.boughtBy.id && (
+                        <HStack spacing="10px">
+                          <IconButton
+                            icon={<FiEdit3 />}
+                            colorScheme="purple"
+                            variant="outline"
+                          />
+                          <IconButton
+                            key={index}
+                            icon={<FiTrash2 />}
+                            colorScheme="red"
+                            variant="outline"
+                            onClick={() => {
+                              setItems(
+                                items.filter((item) => item !== items[index])
+                              );
+                            }}
+                          />
+                        </HStack>
+                      )}
+                    </Td>
                   </Tr>
                 );
               })}
