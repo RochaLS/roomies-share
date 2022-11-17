@@ -16,7 +16,23 @@ import {
 import { NavigationBar } from "./components/NavigationBar";
 import { AddItemModal } from "./components/AddItemModal";
 
+import React, { useState } from "react";
+
 const Home = () => {
+  const item = {
+    id: 1,
+    name: "Fresh Prep",
+    totalCost: 94.0,
+    boughtBy: "Lucas Rocha",
+    splittedBetween: ["Lucas Rocha", "Gabriel Figliolino"],
+    finalCost: 47.0,
+  };
+  const [items, setItems] = useState([item]);
+
+  function handleUpdate(newItem) {
+    setItems([...items, newItem]);
+  }
+
   const user1 = {
     id: 1,
     firstName: "Lucas",
@@ -68,71 +84,28 @@ const Home = () => {
               </Tr>
             </Thead>
             <Tbody>
-              <Tr>
-                <Td>Lucas Rocha</Td>
-                <Td>Fresh Prep</Td>
-                <Td>$94.00</Td>
-                <Td>
-                  <AvatarGroup>
-                    <Avatar name="Lucas Rocha" />
-                    <Avatar name="Lucas Rocha" />
-                  </AvatarGroup>
-                </Td>
-                <Td>$47.00</Td>
-              </Tr>
-              <Tr>
-                <Td>Lucas Rocha</Td>
-                <Td>Fresh Prep</Td>
-                <Td>$94.00</Td>
-                <Td>
-                  <AvatarGroup>
-                    <Avatar name="Lucas Rocha" />
-                    <Avatar name="Lucas Rocha" />
-                  </AvatarGroup>
-                </Td>
-                <Td>$47.00</Td>
-              </Tr>
-              <Tr>
-                <Td>Lucas Rocha</Td>
-                <Td>Fresh Prep</Td>
-                <Td>$94.00</Td>
-                <Td>
-                  <AvatarGroup>
-                    <Avatar name="Lucas Rocha" />
-                    <Avatar name="Lucas Rocha" />
-                  </AvatarGroup>
-                </Td>
-                <Td>$47.00</Td>
-              </Tr>
-              <Tr>
-                <Td>Lucas Rocha</Td>
-                <Td>Fresh Prep</Td>
-                <Td>$94.00</Td>
-                <Td>
-                  <AvatarGroup>
-                    <Avatar name="Lucas Rocha" />
-                    <Avatar name="Lucas Rocha" />
-                  </AvatarGroup>
-                </Td>
-                <Td>$47.00</Td>
-              </Tr>
-              <Tr>
-                <Td>Lucas Rocha</Td>
-                <Td>Fresh Prep</Td>
-                <Td>$94.00</Td>
-                <Td>
-                  <AvatarGroup>
-                    <Avatar name="Lucas Rocha" />
-                    <Avatar name="Lucas Rocha" />
-                  </AvatarGroup>
-                </Td>
-                <Td>$47.00</Td>
-              </Tr>
+              {items.map((item, index) => {
+                return (
+                  <Tr key={index}>
+                    <Td>{item.boughtBy}</Td>
+                    <Td>{item.name}</Td>
+                    <Td>${Number(item.totalCost).toFixed(2)}</Td>
+                    <Td>
+                      <AvatarGroup>
+                        {item.splittedBetween.map((user, index) => {
+                          return <Avatar key={index} name={user} />;
+                        })}
+                      </AvatarGroup>
+                    </Td>
+                    <Td>${Number(item.finalCost).toFixed(2)}</Td>
+                  </Tr>
+                );
+              })}
             </Tbody>
           </Table>
         </TableContainer>
         <Flex mt="20px" mr="10px" justify="flex-end">
-          <AddItemModal groupUsers={users} />
+          <AddItemModal groupUsers={users} handleUpdate={handleUpdate} />
         </Flex>
       </Box>
     </>

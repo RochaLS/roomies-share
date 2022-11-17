@@ -28,24 +28,38 @@ import { PrimaryButton } from "./PrimaryButton";
 import { FiPlusCircle } from "react-icons/fi";
 import { useEffect, useState } from "react";
 
-export function AddItemModal({ groupUsers }) {
+export function AddItemModal({ groupUsers, handleUpdate }) {
   console.log(groupUsers);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [splitEqually, setSplitEqually] = useState(true);
 
   //Form Controls
   const [itemName, setItemName] = useState("");
-  const [itemTotalCost, setItemTotalCost] = useState(0);
+  const [itemTotalCost, setItemTotalCost] = useState("0");
   const [additionalNotes, setAdditionalNotes] = useState("");
 
   const [checkedState, setCheckedState] = useState(new Array(3).fill(false));
+  const [selectedUsers, setSelectedUsers] = useState([]);
 
-  const handleOnChange = (position) => {
+  const handleOnChange = (value, position) => {
     const updatedCheckedState = checkedState.map((item, index) =>
       index === position ? !item : item
     );
     setCheckedState(updatedCheckedState);
+    setSelectedUsers([...selectedUsers, value]);
   };
+
+  function getAllCheckedBoxes() {
+    let checkedCheckboxes = [];
+    for (let i = 0; i < checkedState; i++) {
+      if (checkedState[i] === true) {
+        checkedCheckboxes.push(i);
+      }
+    }
+    return checkedCheckboxes;
+  }
+
+  const currentUser = "Lucas Rocha";
 
   return (
     <>
@@ -80,7 +94,7 @@ export function AddItemModal({ groupUsers }) {
                   variant="filled"
                   focusBorderColor="purple.500"
                   value={itemTotalCost}
-                  onChange={(e) => setItemTotalCost(Number(e.target.value))}
+                  onChange={(e) => setItemTotalCost(e)}
                 >
                   <NumberInputField />
                   <NumberInputStepper>
@@ -103,7 +117,7 @@ export function AddItemModal({ groupUsers }) {
                         key={index}
                         value={user.firstName}
                         checked={checkedState[index]}
-                        onChange={() => handleOnChange(index)}
+                        onChange={(e) => handleOnChange(e.target.value, index)}
                       >
                         {user.firstName}
                       </Checkbox>
@@ -162,12 +176,28 @@ export function AddItemModal({ groupUsers }) {
             <Button
               colorScheme="purple"
               mr={3}
-              onClick={onClose}
+              onClick={() => {
+                const newItem = {
+                  id: 1,
+                  name: itemName,
+                  totalCost: itemTotalCost,
+                  boughtBy: currentUser, // Need to use ID later on
+                  splittedBetween: selectedUsers,
+                  finalCost: itemTotalCost / selectedUsers.length,
+                };
+                handleUpdate(newItem);
+                onClose();
+                setItemName("");
+                setItemTotalCost("");
+                setAdditionalNotes("");
+              }}
               _hover={{ bgColor: "#5149fb" }}
             >
               Add
             </Button>
-            <Button variant="ghost">Cancel</Button>
+            <Button onClick={onClose} variant="ghost">
+              Cancel
+            </Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
