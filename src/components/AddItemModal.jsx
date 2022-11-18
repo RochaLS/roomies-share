@@ -39,7 +39,9 @@ export function AddItemModal({ groupUsers, handleUpdate }) {
   const [itemCounter, setItemCounter] = useState(3);
   const [additionalNotes, setAdditionalNotes] = useState("");
 
-  const [checkedState, setCheckedState] = useState(new Array(3).fill(false));
+  const [checkedState, setCheckedState] = useState(
+    new Array(groupUsers.length).fill(false)
+  );
   const [selectedUsers, setSelectedUsers] = useState([]);
 
   const handleOnChange = (value, position) => {
@@ -48,6 +50,9 @@ export function AddItemModal({ groupUsers, handleUpdate }) {
     );
     setCheckedState(updatedCheckedState);
     setSelectedUsers([...selectedUsers, value]);
+
+    console.log(checkedState);
+    console.log(selectedUsers);
   };
 
   const currentUser = "Lucas Rocha";
@@ -139,7 +144,7 @@ export function AddItemModal({ groupUsers, handleUpdate }) {
                 setItemName("");
                 setItemTotalCost("");
                 setAdditionalNotes("");
-                setSelectedUsers([]);
+                // setSelectedUsers([]);
                 setItemCounter(itemCounter + 1);
               }}
               _hover={{ bgColor: "#5149fb" }}
