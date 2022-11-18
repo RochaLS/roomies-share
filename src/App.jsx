@@ -17,8 +17,9 @@ import {
 
 import { NavigationBar } from "./components/NavigationBar";
 import { AddItemModal } from "./components/AddItemModal";
+import { EditItemModal } from "./components/EditItemModal";
 
-import { FiTrash2, FiEdit3 } from "react-icons/fi";
+import { FiTrash2 } from "react-icons/fi";
 
 import React, { useState } from "react";
 
@@ -28,7 +29,7 @@ const Home = () => {
     name: "Fresh Prep",
     totalCost: 94.0,
     boughtBy: { name: "Lucas Rocha", id: 1 },
-    splittedBetween: ["Lucas Rocha", "Gabriel Figliolino"],
+    splittedBetween: ["Lucas", "Gabriel"],
     finalCost: 47.0,
   };
 
@@ -37,7 +38,7 @@ const Home = () => {
     name: "Kana's present",
     totalCost: 36.0,
     boughtBy: { name: "Gabriel Figliolino", id: 2 },
-    splittedBetween: ["Gabriel Figliolino", "Lucas Rocha"],
+    splittedBetween: ["Gabriel", "Lucas"],
     finalCost: 18.0,
   };
   const [items, setItems] = useState([item1, item2]);
@@ -46,6 +47,23 @@ const Home = () => {
 
   function handleUpdate(newItem) {
     setItems([...items, newItem]);
+  }
+
+  function handleEdit(itemToUpdate) {
+    console.log(itemToUpdate);
+    // const updatedItems = items.map((item) => {
+    //   if (item.id === itemToUpdate.id) {
+    //     return itemToUpdate;
+    //   }
+    // });
+    const updatedItems = items.map((item) => {
+      if (item.id === itemToUpdate.id) {
+        return itemToUpdate;
+      }
+      return item;
+    });
+    setItems(updatedItems);
+    console.log(updatedItems);
   }
 
   const user1 = {
@@ -102,7 +120,7 @@ const Home = () => {
               {items.map((item, index) => {
                 return (
                   <Tr key={index}>
-                    <Td>{item.boughtBy.name}</Td>
+                    <Td>Lucas Rocha</Td>
                     <Td>{item.name}</Td>
                     <Td>${Number(item.totalCost).toFixed(2)}</Td>
                     <Td>
@@ -116,10 +134,17 @@ const Home = () => {
                     <Td>
                       {currentUserId === item.boughtBy.id && (
                         <HStack spacing="10px">
-                          <IconButton
-                            icon={<FiEdit3 />}
-                            colorScheme="purple"
-                            variant="outline"
+                          <EditItemModal
+                            groupUsers={users}
+                            values={{
+                              id: item.id,
+                              name: item.name,
+                              totalCost: item.totalCost,
+                              boughtBy: item.boughtBy,
+                              splittedBetween: item.splittedBetween,
+                              additionalNotes: item.additionalNotes,
+                            }}
+                            handleEdit={handleEdit}
                           />
                           <IconButton
                             key={index}

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Modal,
   ModalOverlay,
@@ -26,26 +27,24 @@ import {
 
 import { FiEdit3 } from "react-icons/fi";
 
-import { PrimaryButton } from "./PrimaryButton";
-import { FiPlusCircle } from "react-icons/fi";
-import { useState } from "react";
-
-export function AddItemModal({ groupUsers, handleUpdate }) {
+export function EditItemModal({ groupUsers, handleEdit, values }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   //Form Controls
-  const [itemName, setItemName] = useState("");
-  const [itemTotalCost, setItemTotalCost] = useState("0");
-  const [itemCounter, setItemCounter] = useState(3);
-  const [additionalNotes, setAdditionalNotes] = useState("");
+  const [itemName, setItemName] = useState(values.name);
+  const [itemTotalCost, setItemTotalCost] = useState(values.totalCost);
+  const [additionalNotes, setAdditionalNotes] = useState(
+    values.additionalNotes
+  );
 
   const [checkedState, setCheckedState] = useState(new Array(3).fill(false));
-  const [selectedUsers, setSelectedUsers] = useState([]);
+  const [selectedUsers, setSelectedUsers] = useState(values.splittedBetween);
 
   const handleOnChange = (value, position) => {
     const updatedCheckedState = checkedState.map((item, index) =>
       index === position ? !item : item
     );
+
     setCheckedState(updatedCheckedState);
     setSelectedUsers([...selectedUsers, value]);
   };
@@ -54,16 +53,16 @@ export function AddItemModal({ groupUsers, handleUpdate }) {
 
   return (
     <>
-      <PrimaryButton
+      <IconButton
+        icon={<FiEdit3 />}
+        colorScheme="purple"
+        variant="outline"
         onClick={onOpen}
-        text="Add Item"
-        icon={<FiPlusCircle size="1.2em" />}
       />
-
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader textAlign="center">Add Item</ModalHeader>
+          <ModalHeader textAlign="center">Edit Item</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <FormControl>
@@ -71,12 +70,15 @@ export function AddItemModal({ groupUsers, handleUpdate }) {
                 <Input
                   focusBorderColor="purple.500"
                   type="text"
-                  placeholder={"Item Name"}
+                  placeholder="Item Name"
                   variant="filled"
                   value={itemName}
                   onChange={(e) => setItemName(e.target.value)}
                 />
                 <FormLabel>Total Cost</FormLabel>
+                {/* <FormHelperText>
+                  Previous Cost: {"$" + values.totalCost.toFixed(2)}
+                </FormHelperText> */}
                 <NumberInput
                   step={5}
                   defaultValue={0}
@@ -96,13 +98,16 @@ export function AddItemModal({ groupUsers, handleUpdate }) {
 
                 <Textarea
                   focusBorderColor="purple.500"
-                  placeholder={"Item Name"}
+                  placeholder="Additional notes..."
                   variant="filled"
                   value={additionalNotes}
                   onChange={(e) => setAdditionalNotes(e.target.value)}
                 />
                 <FormLabel>Split in between</FormLabel>
-                <CheckboxGroup colorScheme="purple">
+                <CheckboxGroup
+                  defaultValue={selectedUsers}
+                  colorScheme="purple"
+                >
                   <Stack spacing={[1, 5]} direction={["column", "row"]}>
                     {groupUsers.map((user, index) => (
                       <Checkbox
@@ -125,26 +130,20 @@ export function AddItemModal({ groupUsers, handleUpdate }) {
               colorScheme="purple"
               mr={3}
               onClick={() => {
-                const newItem = {
-                  id: itemCounter,
+                const updatedItem = {
+                  id: values.id,
                   name: itemName,
                   totalCost: itemTotalCost,
                   boughtBy: { name: currentUser, id: 1 }, // Need to use ID later on
                   splittedBetween: selectedUsers,
                   finalCost: itemTotalCost / selectedUsers.length,
                 };
-                handleUpdate(newItem);
-
+                handleEdit(updatedItem);
                 onClose();
-                setItemName("");
-                setItemTotalCost("");
-                setAdditionalNotes("");
-                setSelectedUsers([]);
-                setItemCounter(itemCounter + 1);
               }}
               _hover={{ bgColor: "#5149fb" }}
             >
-              Add
+              Update
             </Button>
             <Button onClick={onClose} variant="ghost">
               Cancel
