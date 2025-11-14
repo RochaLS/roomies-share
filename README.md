@@ -1,70 +1,55 @@
-# Getting Started with Create React App
+# 🏠 Roomies Pay  
+**Split expenses with your roommates — fast, fair, and frustration-free.**
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Roomies Pay is a full-stack web app that helps roommates track shared expenses, split bills, and settle balances with zero drama.  
+Add expenses, split them automatically, track who owes who, and keep everyone on the same page.
 
-## Available Scripts
 
-In the project directory, you can run:
+## ⭐ About Roomies Pay  
+Living with roommates can be great — until it's time to split rent, utilities, groceries, or random shared purchases.  
+Roomies Pay makes the process simple and transparent:
 
-### `npm start`
+- Add shared expenses  
+- Track each roommate’s balance  
+- See who owes who  
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+No more awkward conversations, spreadsheets, or mental math.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+## 🎯 Why I Built This  
+I’ve lived with roommates and know how messy expense-sharing can get.  
+Most apps that do this are either too complex or locked behind paywalls.  
+I wanted something:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Clean  
+- Fast  
+- Easy to use  
+- Shared between multiple people  
+- And actually enjoyable to use
 
-### `npm run build`
+Roomies Pay solves the everyday roommate headache of “who owes what?” with a simple interface and intuitive logic.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🖥️ Screenshots  
+![UI Screenshot](https://raw.githubusercontent.com/RochaLS/roomies-share/master/roomies-pay-prev.png)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 🛠️ Tech Stack  
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### **Frontend**
+- React  
+- Chakra UI  
+- TypeScript
+- React Router  
 
-### `npm run eject`
+## 🧠 Core Features  
+### ✔ Add shared expenses  
+Roommates can add expenses like rent, groceries, supplies, utilities, cleaning, etc.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### ✔ Automatic split calculation  
+Even split  — Roomies Pay handles the math.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### ✔ Balance tracking  
+Clear view of who owes who and by how much.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### ✔ Clean UI with Chakra UI  
+Modern, responsive, and accessible design.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
