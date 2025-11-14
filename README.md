@@ -30,8 +30,7 @@ I wanted something:
 Roomies Pay solves the everyday roommate headache of “who owes what?” with a simple interface and intuitive logic.
 
 ## 🖥️ Screenshots  
-![UI Screenshot](https://raw.githubusercontent.com/RochaLS/roomies-share/master/roomies-pay-prev.png)
-
+![UI Screenshot](https://github.com/RochaLS/roomies-share/raw/master/roomies-pay-prev.png)
 ## 🛠️ Tech Stack  
 
 ### **Frontend**
